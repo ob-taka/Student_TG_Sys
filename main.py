@@ -15,7 +15,7 @@ def read_records():
 def print_records(records, n):
     for i in range(min(n, len(records))):
         record = records[i]
-        print(record.Tutorial_group, record.Student_ID, record.school, record.Name, record.Gender, record.CGPA, record.group)
+        print(record.Tutorial_group, record.Student_ID, record.school, record.Name, record.Gender, record.CGPA, record.group, i)
 
 #write a def that create a temporary list of students with the same tutorial group
 def group_students(stud_records):
@@ -33,12 +33,29 @@ stud_TG = group_students(stud_records) # returns a dictionary where keys are tut
 
 #print_records(stud_records, 100)
 
-for key, value in stud_TG.items():
+for key, value in stud_TG.items(): #sorts students by GPA
     sortThis = value
     sortedList = sorted(sortThis, key=lambda student: student.CGPA)
     value = sortedList
-    for i in value:
-        print(i.CGPA)
-    print("/n")
 
+for key, value in stud_TG.items():
+    listBoys = []
+    listGirls = []
+    for i in value:
+        if i.Gender == "Male":
+            listBoys.append(i)
+        else:
+            listGirls.append(i)
+    interleaved = []
+    minLen = min(len(listGirls), len(listBoys))
+    print(minLen)
+    for i in range(0,minLen*2):
+        if i % 2 == 0:
+            interleaved.append(listBoys.pop())
+        else:
+            interleaved.append(listGirls.pop())
+    interleaved = interleaved + listBoys + listGirls
+    print("interleaved", len(interleaved), len(listBoys), len(listGirls))
+    print_records(interleaved, 50)
+   # print(key, len(listBoys), len(listGirls))
                 

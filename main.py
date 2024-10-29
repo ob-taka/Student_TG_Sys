@@ -26,11 +26,19 @@ def group_students(stud_records):
         t_groups[stud.Tutorial_group].append(stud)
     return t_groups
 
+
+
 stud_records = read_records() # returns a list of Student objects
 stud_TG = group_students(stud_records) # returns a dictionary where keys are tut groups and values are Student objs
 
+#print_records(stud_records, 100)
 
-
-
+for key, value in stud_TG.items():
+    sortThis = value
+    sortedList = sorted(sortThis, key=lambda student: student.CGPA)
+    value = sortedList
+    for i in value:
+        print(i.CGPA)
+    print("/n")
 
                 

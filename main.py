@@ -26,8 +26,8 @@ def group_students(stud_records):
         t_groups[stud.Tutorial_group].append(stud)
     return t_groups
 
-stud_records = read_records()
-stud_TG = group_students(stud_records)
+stud_records = read_records() # returns a list of Student objects
+stud_TG = group_students(stud_records) # returns a dictionary where keys are tut groups and values are Student objs
 
 
 

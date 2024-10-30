@@ -15,7 +15,7 @@ def read_records():
 def print_records(records, n):
     for i in range(min(n, len(records))):
         record = records[i]
-        print(record.Tutorial_group, record.Student_ID, record.school, record.Name, record.Gender, record.CGPA, record.group, i)
+        print(record.Tutorial_group, record.Student_ID, record.school, record.Name, record.Gender, record.CGPA, record.group)
 
 #write a def that create a temporary list of students with the same tutorial group
 def group_students(stud_records):
@@ -53,9 +53,18 @@ for key, value in stud_TG.items():
         if i % 2 == 0:
             interleaved.append(listBoys.pop())
         else:
-            interleaved.append(listGirls.pop())
+            interleaved.append(listGirls.pop(0))
     interleaved = interleaved + listBoys + listGirls
-    print("interleaved", len(interleaved), len(listBoys), len(listGirls))
+    index = 0
+    groupNo = 1
+    for i in interleaved:
+        i.group = groupNo
+        index += 1
+        if index == 5:
+            index = 0
+            groupNo += 1
+
     print_records(interleaved, 50)
+
    # print(key, len(listBoys), len(listGirls))
                 

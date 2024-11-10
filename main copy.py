@@ -71,7 +71,7 @@ def findAverage(list, attr):
 
 def sortingFunc(list, attr, recursionNo):
     lengthList = len(list)
-    print_records(list, lengthList)
+    #print_records(list, lengthList)
     if lengthList <= 5:
         for again in range(0, lengthList*2):
             for i in range(0, lengthList-1):
@@ -79,17 +79,17 @@ def sortingFunc(list, attr, recursionNo):
                     list[i], list[i+1] = list [i+1], list[i]
             again +=1
         finalList = list
-        print_records(list, lengthList)
+        #print_records(list, lengthList)
     elif recursionNo > 50:
         return list, recursionNo  
     else:
         valence = findAverage(list, "CGPA")
         halfLen = lengthList // 2
-        print(halfLen, lengthList)
+        #print(halfLen, lengthList)
         #print_records(list, lengthList)
         halfList1 = []
         halfList2 = []
-        print("recursion", recursionNo)
+        #print("recursion", recursionNo)
         for i in list:
             if float(getattr(i, attr)) > valence:
                 #print(getattr(i, attr), valence, "more")
@@ -100,14 +100,15 @@ def sortingFunc(list, attr, recursionNo):
             elif float(getattr(i, attr)) == valence:
                 #print(getattr(i, attr), valence, "same")
                 halfList1.append(i)
-        print("half1")
-        print_records(halfList1, len(halfList1))
-        print("half2")
-        print_records(halfList2, len(halfList2))
-        halfList1, recursionNo = sortingFunc(halfList1, attr, recursionNo+1)
-        print("half1 done")
-        halfList2, recursionNo = sortingFunc(halfList2, attr, recursionNo+1)
-        print("half2 done")
+        #print("half1")
+        #print_records(halfList1, len(halfList1))
+        #print("half2")
+        #print_records(halfList2, len(halfList2))
+        halfList1, recursion1 = sortingFunc(halfList1, attr, recursionNo+1)
+        #print("half1 done")
+        halfList2, recursion2 = sortingFunc(halfList2, attr, recursionNo+1)
+        #print("half2 done")
+        recursionNo = recursion1 + recursion2
         #print(type(halfList1), type(halfList2))
         finalList = halfList1 + halfList2
     return finalList, recursionNo
@@ -154,7 +155,7 @@ for key, value in stud_TG.items():
 
     #print_records(interleaved, 50)
     finalList += interleaved
-    #validateStudents(interleaved, key)
+    validateStudents(interleaved, key)
     #print_attr(interleaved, "CGPA")
 #print_records(finalList, 6000)
 

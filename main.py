@@ -24,12 +24,13 @@ def print_grouped_records(grouped_records):
         #calcualte the average cgpa of the tutorial group
         avg_cgpa = sum([float(student.CGPA) for student in value]) / len(value)
         #calculate the average cgpa of each group
-        avg_group_cgpa = [avg_cgpa - sum([float(student.CGPA) for student in value if student.group == i + 1]) / len([student for student in value if student.group == i + 1]) for i in range(10)]
+        avg_group_cgpa = sorted([avg_cgpa - sum([float(student.CGPA) for student in value if student.group == i + 1]) / len([student for student in value if student.group == i + 1]) for i in range(10)])
         print(key)
         avg_cgpa = f"{avg_cgpa:.3f}"
         print(avg_cgpa)
         #print avg_group_cgpa with values rounded to 3 decimal places
-        print([f"{cgpa:.3f}" for cgpa in avg_group_cgpa], end='\n\n')
+        
+        print("upper: " + str(f"{avg_group_cgpa[-1]:.3f}") + " " + "lower: " + str(f"{avg_group_cgpa[0]:.3f}"), end='\n\n')
         #print the gender of the students in each group
         for i in range(10):
             print('Group', i + 1)
@@ -57,7 +58,7 @@ def assign_groups(stud_TG, group_size: int):
         #average cpga of each group should be as close to the average cgpa of the tutorial group as possible
         groups = [[] for i in range(group_size)] #create x groups
         #track the cgpa of each group
-        group_cgpas = [0] * group_size
+        group_cgpas = [0] * group_size 
         #track the number of students in each group
         group_counts = [0] * group_size
 
@@ -75,8 +76,12 @@ def assign_groups(stud_TG, group_size: int):
         #take students from each gender_group and assign to groups with gpa closest to the tutorial group gpa
         for gender_group in gender_groups:
             for student in gender_group:
+                #get the group with the minimum cgpa
                 min_index = group_cgpas.index(min(group_cgpas))
+                #add the student with highest gpas to the group with the lowest cgpa
+                #since the list is sorted in descending order we know the next student would have the next highest cgpa
                 groups[min_index].append(student)
+                #update the cgpa and count of the group
                 group_cgpas[min_index] += float(student.CGPA)
                 group_counts[min_index] += 1
 

@@ -4,3 +4,5 @@ to-do:
 
 known bugs:
 - self-made sorting algo to sort by GPA kinda doesnt work, sometimes it doesnt sort properly. not entirely sure why because it seems random (but predictable, the results are the same every time i run it so its something wrong with the algo)
+
+most current version is on: main copy 2.py 

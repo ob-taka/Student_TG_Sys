@@ -87,7 +87,8 @@ def sortingFunc(list, attr):
     if len(list) == 0: #if list is empty (most likely due to all values being the same for the prev recursion and thus being kicked to middle list), just return the empty list
         return list
     else:
-        valence = round(findAverage(list, "CGPA"), 2) #round was added because floating point math of 4.1499999999995 was resulting in an infinite recursion where everything in the list was 4.15 but the average was 4.14999999995 so yea
+        valence = float(list[(len(list)//2)].CGPA)
+        #valence = round(findAverage(list, "CGPA"), 2) #round was added because floating point math of 4.1499999999995 was resulting in an infinite recursion where everything in the list was 4.15 but the average was 4.14999999995 so yea
         halfList1 = []
         halfList2 = []
         meanList = []
@@ -144,8 +145,8 @@ for key, value in stud_TG.items(): #this part takes the males and females and in
     finalList += interleaved #appends the sorted list to the final big list of students. can be changed to edit a dictionary
     validateStudents(interleaved, key)
 
-input("print final list") #this is so you can actually read the validation before getting 6000 lines in your terminal
-print_records(finalList, 6000) 
+#input("print final list") #this is so you can actually read the validation before getting 6000 lines in your terminal
+#print_records(finalList, 6000) 
 
 
                 

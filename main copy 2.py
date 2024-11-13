@@ -77,14 +77,14 @@ def findAverage(list, attr):
 
 def sortingFunc(list, attr):
     lengthList = len(list)
-    if lengthList <= 5: #if length of list is below a certain value, use bubble sort to sort it
-        for again in range(0, lengthList*2):
-            for i in range(0, lengthList-1):
-                if float(getattr(list[i], attr)) > float(getattr(list[i+1], attr)):
-                    list[i], list[i+1] = list [i+1], list[i]
-            again +=1
-        finalList = list
-    elif len(list) == 0: #if list is empty (most likely due to all values being the same for the prev recursion and thus being kicked to middle list), just return the empty list
+    # if lengthList <= 5: #if length of list is below a certain value, use bubble sort to sort it
+    #     for again in range(0, lengthList*2):
+    #         for i in range(0, lengthList-1):
+    #             if float(getattr(list[i], attr)) > float(getattr(list[i+1], attr)):
+    #                 list[i], list[i+1] = list [i+1], list[i]
+    #         again +=1
+    #     finalList = list
+    if len(list) == 0: #if list is empty (most likely due to all values being the same for the prev recursion and thus being kicked to middle list), just return the empty list
         return list
     else:
         valence = round(findAverage(list, "CGPA"), 2) #round was added because floating point math of 4.1499999999995 was resulting in an infinite recursion where everything in the list was 4.15 but the average was 4.14999999995 so yea
@@ -112,6 +112,8 @@ for key, value in stud_TG.items(): #sorts students by GPA
     sortThis = value
     sortedList = sortingFunc(value, "CGPA")
     value = sortedList
+    # print_records(value, 50) #testing code
+    # input("next")
     
 finalList = []
 for key, value in stud_TG.items(): #this part takes the males and females and interleaves them with one in ascending GPA order and the other in decending GPA order

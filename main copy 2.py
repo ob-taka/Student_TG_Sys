@@ -76,15 +76,10 @@ def findAverage(list, attr):
 
 
 def sortingFunc(list, attr):
-    lengthList = len(list)
-    # if lengthList <= 5: #if length of list is below a certain value, use bubble sort to sort it
-    #     for again in range(0, lengthList*2):
-    #         for i in range(0, lengthList-1):
-    #             if float(getattr(list[i], attr)) > float(getattr(list[i+1], attr)):
-    #                 list[i], list[i+1] = list [i+1], list[i]
-    #         again +=1
-    #     finalList = list
-    if len(list) == 0: #if list is empty (most likely due to all values being the same for the prev recursion and thus being kicked to middle list), just return the empty list
+    #debugging code here can be removed
+    # lengthList = len(list) 
+    # print(lengthList)
+    if len(list) <= 1: #if list is empty or only contains 1 element (most likely due to all values being the same for the prev recursion and thus being kicked to middle list), just return the empty list
         return list
     else:
         valence = float(list[(len(list)//2)].CGPA)
@@ -113,7 +108,8 @@ for key, value in stud_TG.items(): #sorts students by GPA
     sortThis = value
     sortedList = sortingFunc(value, "CGPA")
     value = sortedList
-    # print_records(value, 50) #testing code
+    #debugging code 
+    # print_records(value, 50) 
     # input("next")
     
 finalList = []
@@ -145,6 +141,7 @@ for key, value in stud_TG.items(): #this part takes the males and females and in
     finalList += interleaved #appends the sorted list to the final big list of students. can be changed to edit a dictionary
     validateStudents(interleaved, key)
 
+#more debugging code
 #input("print final list") #this is so you can actually read the validation before getting 6000 lines in your terminal
 #print_records(finalList, 6000) 
 

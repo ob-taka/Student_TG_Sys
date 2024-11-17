@@ -84,12 +84,6 @@ def group_students(stud_records):
         t_groups[stud.Tutorial_group].append(stud)
     return t_groups
 
-def invertList(list):
-    invertedList = []
-    for i in range(len(list)-1):
-        invertedList.append(list.pop())
-    return invertedList
-
 
 #assign students to groups based on their cgpa
 def assign_groups(stud_TG, group_size: int):
@@ -97,8 +91,7 @@ def assign_groups(stud_TG, group_size: int):
         #sort the students in the tutorial group based on their cgpa
         #from highest to lowest
         #value.sort(key=lambda x: x.CGPA, reverse=True)
-        value = sortingFunc(value, "CGPA")
-        value = invertList(value)
+        value = sortingFunc(value, "CGPA")[::-1]
         #divide the students into 5 groups based on their cgpa and gender
         #average cpga of each group should be as close to the average cgpa of the tutorial group as possible
         groups = [[] for i in range(group_size)] #create x groups

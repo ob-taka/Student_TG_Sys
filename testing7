@@ -67,6 +67,7 @@ def print_grouped_records(grouped_records):
             print('Group', i + 1)
             print([student.Gender for student in value if student.group == i + 1], end='\n\n')
         #print_records(value, 50)
+        #input()
 
 #create a dictionary of students using tutorial group as key and list of students obj with the same tutorial group as value 
 def group_students(stud_records):
